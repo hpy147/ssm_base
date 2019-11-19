@@ -53,15 +53,15 @@ public class ResponseResult<T> implements Serializable {
         return new ResponseResult(ResponseCode.SUCCESS.getCode());
     }
 
-    public static <T> ResponseResult createBySuccess(T data) {
-        return new ResponseResult<>(ResponseCode.SUCCESS.getCode(), data);
-    }
-
-    public static ResponseResult createBySuccessMessage(String msg) {
+    public static ResponseResult createBySuccess(String msg) {
         return new ResponseResult(ResponseCode.SUCCESS.getCode(), msg);
     }
 
-    public static <T> ResponseResult createBySuccess(String msg, T data) {
+    public static <T> ResponseResult<T> createBySuccess(T data) {
+        return new ResponseResult<>(ResponseCode.SUCCESS.getCode(), data);
+    }
+
+    public static <T> ResponseResult<T> createBySuccess(String msg, T data) {
         return new ResponseResult<>(ResponseCode.SUCCESS.getCode(), msg, data);
     }
 
@@ -74,6 +74,10 @@ public class ResponseResult<T> implements Serializable {
 
     public static ResponseResult createByError(String msg) {
         return new ResponseResult(ResponseCode.ERROR.getCode(), msg);
+    }
+
+    public static <T> ResponseResult<T> createByError(T data) {
+        return new ResponseResult<>(ResponseCode.ERROR.getCode(), data);
     }
 
     public static ResponseResult createByError(Integer status, String msg) {
